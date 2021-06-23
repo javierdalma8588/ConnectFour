@@ -1,0 +1,172 @@
+Using pre-set license
+
+ COMMAND LINE ARGUMENTS:
+/Applications/Unity/Hub/Editor/2020.3.11f1/Unity.app/Contents/MacOS/Unity
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+/Users/javier/Documents/GitHub/ConnectFour/COnnectFour
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+50384
+Successfully changed project path to: /Users/javier/Documents/GitHub/ConnectFour/COnnectFour
+/Users/javier/Documents/GitHub/ConnectFour/COnnectFour
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 36.83 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.11f1 (99c7afb366b3)
+[Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2020.3.11f1/Unity.app/Contents/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path /Users/javier/Documents/GitHub/ConnectFour/COnnectFour/Assets
+GfxDevice: creating device client; threaded=0
+2021-06-23 08:56:27.840 Unity[3113:56770] Color LCD preferred device: Intel Iris Pro Graphics (low power)
+2021-06-23 08:56:27.840 Unity[3113:56770] Metal devices available: 1
+2021-06-23 08:56:27.840 Unity[3113:56770] 0: Intel Iris Pro Graphics (low power)
+2021-06-23 08:56:27.841 Unity[3113:56770] Using device Intel Iris Pro Graphics (low power)
+Initializing Metal device caps: Intel Iris Pro Graphics
+Initialize mono
+Mono path[0] = '/Applications/Unity/Hub/Editor/2020.3.11f1/Unity.app/Contents/Managed'
+Mono path[1] = '/Applications/Unity/Hub/Editor/2020.3.11f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = '/Applications/Unity/Hub/Editor/2020.3.11f1/Unity.app/Contents/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56113
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: /Applications/Unity/Hub/Editor/2020.3.11f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
+Register platform support module: /Applications/Unity/Hub/Editor/2020.3.11f1/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.000992 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 34.50 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  4.866 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.001901 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.38 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.470 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launching external process: /Applications/Unity/Hub/Editor/2020.3.11f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.01 seconds
+Refreshing native plugins compatible for Editor in 0.38 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1386 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 138.9 MB.
+System memory in use after: 139.0 MB.
+
+Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 1819.
+Total: 2.716500 ms (FindLiveObjects: 0.234544 ms CreateObjectMapping: 0.096203 ms MarkObjects: 2.289969 ms  DeleteObjects: 0.094619 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Art
+  artifactKey: Guid(884604d5173144e5b88c7515adf56a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art using Guid(884604d5173144e5b88c7515adf56a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98ec13b5f0dd14f1c7f9101f593a5bee') in 0.005057 seconds
+  Import took 0.008058 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000314 seconds.
+  path: Assets/Art/Connect4Board.png
+  artifactKey: Guid(c1f690f85ca334d55ab24d614372d02d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Connect4Board.png using Guid(c1f690f85ca334d55ab24d614372d02d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '861e4f6564cde6cb0704471c5f631765') in 1.197240 seconds
+  Import took 1.199595 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.245936 seconds.
+  path: Assets/Art/Connect4Board.png
+  artifactKey: Guid(c1f690f85ca334d55ab24d614372d02d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Connect4Board.png using Guid(c1f690f85ca334d55ab24d614372d02d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f156883d829c1d8b82bc42ec39e3402') in 0.051745 seconds
+  Import took 0.055163 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 362.783982 seconds.
+  path: Assets/Art/Gameplay Art
+  artifactKey: Guid(72f58688a957d476e95139a07954800b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Gameplay Art using Guid(72f58688a957d476e95139a07954800b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b073320e4b92308e29b8f10f6e1c74d') in 0.002153 seconds
+  Import took 0.005356 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000584 seconds.
+  path: Assets/Art/Gameplay Art
+  artifactKey: Guid(72f58688a957d476e95139a07954800b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Gameplay Art using Guid(72f58688a957d476e95139a07954800b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b073320e4b92308e29b8f10f6e1c74d') in 0.000925 seconds
+  Import took 0.003520 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 39.119561 seconds.
+  path: Assets/Art/Gameplay Art/RedDot.png
+  artifactKey: Guid(c8d56e5bbbb024a99b445ddbd4a70fd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Gameplay Art/RedDot.png using Guid(c8d56e5bbbb024a99b445ddbd4a70fd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9894d524921945c98b0dead64f1a38de') in 0.009989 seconds
+  Import took 0.013193 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000220 seconds.
+  path: Assets/Art/Gameplay Art/YelloDot.png
+  artifactKey: Guid(8477e7bf4016749d482e107bcfa00959) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Gameplay Art/YelloDot.png using Guid(8477e7bf4016749d482e107bcfa00959) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e38941c79f3b0ef003edf26baf4f39e') in 0.008052 seconds
+  Import took 0.010091 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.006582 seconds.
+  path: Assets/Art/Gameplay Art/RedDot.png
+  artifactKey: Guid(c8d56e5bbbb024a99b445ddbd4a70fd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Gameplay Art/RedDot.png using Guid(c8d56e5bbbb024a99b445ddbd4a70fd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9894d524921945c98b0dead64f1a38de') in 0.007699 seconds
+  Import took 0.009945 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 54.830694 seconds.
+  path: Assets/Art/Gameplay Art/RedDot.png
+  artifactKey: Guid(c8d56e5bbbb024a99b445ddbd4a70fd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Gameplay Art/RedDot.png using Guid(c8d56e5bbbb024a99b445ddbd4a70fd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e811ff9216b259825b0786c34c7e0d55') in 0.012366 seconds
+  Import took 0.015522 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000244 seconds.
+  path: Assets/Art/Gameplay Art/YelloDot.png
+  artifactKey: Guid(8477e7bf4016749d482e107bcfa00959) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Gameplay Art/YelloDot.png using Guid(8477e7bf4016749d482e107bcfa00959) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c27599170caf9292e22a70ed9ca5d107') in 0.014101 seconds
+  Import took 0.016276 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.940025 seconds.
+  path: Assets/Art/Gameplay Art/YellowDot.png
+  artifactKey: Guid(8477e7bf4016749d482e107bcfa00959) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Art/Gameplay Art/YellowDot.png using Guid(8477e7bf4016749d482e107bcfa00959) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '580c29c41083d35ce6797314d2ac572f') in 0.011488 seconds
+  Import took 0.014922 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 31.422861 seconds.
+  path: Assets/Scenes/SampleScene.unity
+  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/SampleScene.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b79a01ab3b98ee9b269b33d9884f5a1') in 0.002503 seconds
+  Import took 0.005525 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.321952 seconds.
+  path: Assets/Scenes/ConnectFour.unity
+  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/ConnectFour.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19eec3f4ad63f440dd6921eeba36a59b') in 0.001549 seconds
+  Import took 0.004682 seconds .
+
