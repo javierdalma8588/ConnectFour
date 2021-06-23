@@ -4,10 +4,30 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Singleton")]
+    public static GameManager _instance;
+
+    public static GameManager Instance { get { return _instance; } }
+
+    [Header("Player dots")]
     public GameObject player1;
     public GameObject player2;
 
-    // Start is called before the first frame update
+    [Header("Dot Spawn Points")]
+    public Transform[] spawnPoints;
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+
     void Start()
     {
         
@@ -17,5 +37,15 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SelectColumn(int column)
+    {
+
+    }
+
+    public void TakeTurn(int column)
+    {
+        Instantiate(player1, spawnPoints[column]);
     }
 }
