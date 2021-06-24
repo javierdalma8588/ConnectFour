@@ -16,6 +16,14 @@ public class GameManager : MonoBehaviour
     [Header("Dot Spawn Points")]
     public Transform[] spawnPoints;
 
+    [Header("Turns")]
+    bool player1Turns = true;
+
+    [Header("Board")]
+    int height = 6;
+    int lenght = 7;
+    public int[,] board; //0 is empty, 1 player1 and 2 player2
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -30,22 +38,51 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        board = new int[lenght, height];
     }
 
     public void SelectColumn(int column)
     {
-
+        Debug.Log("GameManager Colum " + column);
+        TakeTurn(column);
     }
 
     public void TakeTurn(int column)
     {
-        Instantiate(player1, spawnPoints[column]);
+        if(UpdateBoardState(column))
+        {
+            if (player1Turns)
+            {
+                Instantiate(player1, spawnPoints[column]);
+            }
+            else
+            {
+                Instantiate(player2, spawnPoints[column]);
+            }
+
+            player1Turns = !player1Turns;
+        }
+    }
+
+    bool UpdateBoardState(int column)
+    {
+        for(int row = 0; row < height ; row++)
+        {
+            if(board[column, row] == 0)// the spot is empty
+            {
+                if (player1Turns)
+                {
+                    board[column, row] = 1;
+                }
+                else
+                {
+                    board[column, row] = 2;
+                }
+                Debug.Log("Piece being spawned at ("+ column +" , " + row +")");
+                return true;
+            }
+        }
+        Debug.LogWarning("The column " + column + " is full");
+        return false;
     }
 }

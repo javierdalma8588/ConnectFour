@@ -8,6 +8,6 @@ public class InputFields : MonoBehaviour
 
     private void OnMouseDown()
     {
-        GameManager._instance.TakeTurn(column);
+        GameManager._instance.SelectColumn(column);
     }
 }
