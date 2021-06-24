@@ -10,4 +10,9 @@ public class InputFields : MonoBehaviour
     {
         GameManager._instance.SelectColumn(column);
     }
+
+    private void OnMouseOver()
+    {
+        GameManager._instance.PlayerUI(column);
+    }
 }

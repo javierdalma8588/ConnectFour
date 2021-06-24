@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
+    [Header("Player UI")]
+    public GameObject player1UI;
+    public GameObject player2UI;
+
     [Header("Dot Spawn Points")]
     public Transform[] spawnPoints;
 
@@ -23,6 +27,9 @@ public class GameManager : MonoBehaviour
     int height = 6;
     int lenght = 7;
     public int[,] board; //0 is empty, 1 player1 and 2 player2
+
+    [Header("Current Piece")]
+    GameObject currentPiece;
 
     private void Awake()
     {
@@ -39,6 +46,27 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         board = new int[lenght, height];
+
+        player1UI.SetActive(false);
+
+        player2UI.SetActive(false);
+    }
+
+    public void PlayerUI(int column)
+    {
+        if (board[column, height - 1] == 0)
+        {
+            if (player1Turns)
+            {
+                player1UI.SetActive(true);
+                player1UI.transform.position = spawnPoints[column].transform.position;
+            }
+            else
+            {
+                player2UI.SetActive(true);
+                player2UI.transform.position = spawnPoints[column].transform.position;
+            }
+        }
     }
 
     public void SelectColumn(int column)
@@ -49,15 +77,17 @@ public class GameManager : MonoBehaviour
 
     public void TakeTurn(int column)
     {
-        if(UpdateBoardState(column))
+        if(UpdateBoardState(column) && (currentPiece == null || currentPiece.GetComponent<Rigidbody>().velocity == Vector3.zero))
         {
+            player1UI.SetActive(false);
+            player2UI.SetActive(false);
             if (player1Turns)
             {
-                Instantiate(player1, spawnPoints[column]);
+                currentPiece = Instantiate(player1, spawnPoints[column]);
             }
             else
             {
-                Instantiate(player2, spawnPoints[column]);
+                currentPiece = Instantiate(player2, spawnPoints[column]);
             }
 
             player1Turns = !player1Turns;
@@ -66,20 +96,23 @@ public class GameManager : MonoBehaviour
 
     bool UpdateBoardState(int column)
     {
-        for(int row = 0; row < height ; row++)
+        if(currentPiece == null || currentPiece.GetComponent<Rigidbody>().velocity == Vector3.zero)
         {
-            if(board[column, row] == 0)// the spot is empty
+            for (int row = 0; row < height; row++)
             {
-                if (player1Turns)
+                if (board[column, row] == 0)// the spot is empty
                 {
-                    board[column, row] = 1;
+                    if (player1Turns)
+                    {
+                        board[column, row] = 1;
+                    }
+                    else
+                    {
+                        board[column, row] = 2;
+                    }
+                    Debug.Log("Piece being spawned at (" + column + " , " + row + ")");
+                    return true;
                 }
-                else
-                {
-                    board[column, row] = 2;
-                }
-                Debug.Log("Piece being spawned at ("+ column +" , " + row +")");
-                return true;
             }
         }
         Debug.LogWarning("The column " + column + " is full");
