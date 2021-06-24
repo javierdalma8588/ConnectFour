@@ -56,8 +56,8 @@
     <Analyzer Include="/Applications/Visual Studio.app/Contents/Resources/lib/monodevelop/AddIns/MonoDevelop.Unity/Analyzers/Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets/Scripts/GameplayScripts/GameManager.cs" />
     <Compile Include="Assets/Scripts/GameplayScripts/InputFields.cs" />
+    <Compile Include="Assets/Scripts/GameplayScripts/GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
