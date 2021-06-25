@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     [Header("Dot Spawn Points")]
     public Transform[] spawnPoints;
 
+    [Header("GameMode")]
+    public bool AI = false;
+
     [Header("Turns")]
     bool player1Turns = true;
     bool gameOver = false;
@@ -63,7 +66,7 @@ public class GameManager : MonoBehaviour
                 player1UI.SetActive(true);
                 player1UI.transform.position = spawnPoints[column].transform.position;
             }
-            else
+            else if(!AI)
             {
                 player2UI.SetActive(true);
                 player2UI.transform.position = spawnPoints[column].transform.position;
@@ -74,17 +77,19 @@ public class GameManager : MonoBehaviour
     public void SelectColumn(int column)
     {
         //Debug.Log("GameManager Colum " + column);
-        TakeTurn(column);
+        StartCoroutine(TakeTurn(column));
     }
 
-    public void TakeTurn(int column)
+    public IEnumerator TakeTurn(int column)
     {
         if(UpdateBoardState(column) && (currentPiece == null || currentPiece.GetComponent<Rigidbody>().velocity == Vector3.zero) && !gameOver)
         {
             player1UI.SetActive(false);
             player2UI.SetActive(false);
+
             if (player1Turns)
             {
+                Debug.LogError("Player 1");
                 currentPiece = Instantiate(player1, spawnPoints[column]);
                 if(Win(1))
                 {
@@ -95,9 +100,23 @@ public class GameManager : MonoBehaviour
                     //Debug.LogError("Player1 Won");
                 }
             }
-            else
+            else if(!AI)
             {
+                Debug.LogError("Player 2");
                 currentPiece = Instantiate(player2, spawnPoints[column]);
+                if (Win(2))
+                {
+                    gameOver = true;
+                    UIManager._instance.EnableWinScreen();
+                    UIManager._instance.winText.text = "Player 2 Won";
+                    UIManager._instance.winText.color = Color.yellow;
+                    //Debug.LogError("Player2 Won");
+                }
+            } else
+            {
+                Debug.LogError("AI");
+                yield return new WaitForSeconds(1);
+                currentPiece = Instantiate(player2, spawnPoints[Random.Range(0,lenght)]);
                 if (Win(2))
                 {
                     gameOver = true;
