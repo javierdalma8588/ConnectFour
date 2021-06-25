@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     [Header("Player dots")]
-    public Piece player1;
-    public Piece player2;
+    public GameObject player1;
+    public GameObject player2;
 
     [Header("Board UI")]
     public GameObject player1UI;
@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
     public bool AI = false;
 
     [Header("Turns")]
-    public bool player1Turns = true;
-    public bool gameOver = false;
+    bool player1Turns = true;
+    bool gameOver = false;
 
     [Header("Board")]
     int height = 6;
@@ -82,18 +82,16 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator TakeTurn(int column)
     {
-        if(UpdateBoardState(column) && (currentPiece == null || currentPiece.gameObject.GetComponent<Rigidbody>().velocity == Vector3.zero) && !gameOver)
+        if(UpdateBoardState(column) && (currentPiece == null || currentPiece.GetComponent<Rigidbody>().velocity == Vector3.zero) && !gameOver)
         {
             player1UI.SetActive(false);
             player2UI.SetActive(false);
 
             if (player1Turns)
             {
-                //Debug.LogError("Player 1");
-                currentPiece = Instantiate(player1.gameObject, spawnPoints[column]);
-                player1Turns = !player1Turns;
-                StartCoroutine(TakeTurn(column));
-                if (Win(1))
+                Debug.LogError("Player 1");
+                currentPiece = Instantiate(player1, spawnPoints[column]);
+                if(Win(1))
                 {
                     gameOver = true;
                     UIManager._instance.EnableWinScreen();
@@ -104,9 +102,8 @@ public class GameManager : MonoBehaviour
             }
             else if(!AI)
             {
-                //Debug.LogError("Player 2");
-                currentPiece = Instantiate(player2.gameObject, spawnPoints[column]);
-                player1Turns = !player1Turns;
+                Debug.LogError("Player 2");
+                currentPiece = Instantiate(player2, spawnPoints[column]);
                 if (Win(2))
                 {
                     gameOver = true;
@@ -117,10 +114,9 @@ public class GameManager : MonoBehaviour
                 }
             } else
             {
-                yield return new WaitForSeconds(1);
                 Debug.LogError("AI");
-                currentPiece = Instantiate(player2.gameObject, spawnPoints[Random.Range(0,lenght)]);
-                player1Turns = !player1Turns;
+                yield return new WaitForSeconds(1);
+                currentPiece = Instantiate(player2, spawnPoints[Random.Range(0,lenght)]);
                 if (Win(2))
                 {
                     gameOver = true;
@@ -131,6 +127,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
+            player1Turns = !player1Turns;
         }
 
         if(Draw())
