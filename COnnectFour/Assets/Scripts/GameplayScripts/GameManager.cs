@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     public void SelectColumn(int column)
     {
-        Debug.Log("GameManager Colum " + column);
+        //Debug.Log("GameManager Colum " + column);
         TakeTurn(column);
     }
 
@@ -101,6 +101,11 @@ public class GameManager : MonoBehaviour
 
             player1Turns = !player1Turns;
         }
+
+        if(Draw())
+        {
+            Debug.LogError("Draw");
+        }
     }
 
     bool UpdateBoardState(int column)
@@ -119,12 +124,12 @@ public class GameManager : MonoBehaviour
                     {
                         board[column, row] = 2;
                     }
-                    Debug.Log("Piece being spawned at (" + column + " , " + row + ")");
+                    //Debug.Log("Piece being spawned at (" + column + " , " + row + ")");
                     return true;
                 }
             }
         }
-        Debug.LogWarning("The column " + column + " is full");
+        //Debug.LogWarning("The column " + column + " is full");
         return false;
     }
 
@@ -193,5 +198,18 @@ public class GameManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    bool Draw()
+    {
+        //Check the top row to make sure that nobody won in that case the match ends in a Draw
+        for (int x =0; x <lenght; x++)
+        {
+            if(board[x, height-1] == 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
