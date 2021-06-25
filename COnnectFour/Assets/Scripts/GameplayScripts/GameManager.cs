@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Turns")]
     bool player1Turns = true;
+    bool gameOver = false;
 
     [Header("Board")]
     int height = 6;
@@ -55,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerUI(int column)
     {
-        if (board[column, height - 1] == 0)
+        if (board[column, height - 1] == 0 && !gameOver)
         {
             if (player1Turns)
             {
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     public void TakeTurn(int column)
     {
-        if(UpdateBoardState(column) && (currentPiece == null || currentPiece.GetComponent<Rigidbody>().velocity == Vector3.zero))
+        if(UpdateBoardState(column) && (currentPiece == null || currentPiece.GetComponent<Rigidbody>().velocity == Vector3.zero) && !gameOver)
         {
             player1UI.SetActive(false);
             player2UI.SetActive(false);
@@ -87,7 +88,11 @@ public class GameManager : MonoBehaviour
                 currentPiece = Instantiate(player1, spawnPoints[column]);
                 if(Win(1))
                 {
-                    Debug.LogError("Player1 Won");
+                    gameOver = true;
+                    UIManager._instance.EnableWinScreen();
+                    UIManager._instance.winText.text = "Player 1 Won";
+                    UIManager._instance.winText.color = Color.red;
+                    //Debug.LogError("Player1 Won");
                 }
             }
             else
@@ -95,7 +100,11 @@ public class GameManager : MonoBehaviour
                 currentPiece = Instantiate(player2, spawnPoints[column]);
                 if (Win(2))
                 {
-                    Debug.LogError("Player2 Won");
+                    gameOver = true;
+                    UIManager._instance.EnableWinScreen();
+                    UIManager._instance.winText.text = "Player 2 Won";
+                    UIManager._instance.winText.color = Color.yellow;
+                    //Debug.LogError("Player2 Won");
                 }
             }
 
@@ -104,7 +113,10 @@ public class GameManager : MonoBehaviour
 
         if(Draw())
         {
-            Debug.LogError("Draw");
+            gameOver = true;
+            UIManager._instance.EnableWinScreen();
+            UIManager._instance.winText.text = "Draw";
+            //Debug.LogError("Draw");
         }
     }
 
@@ -142,10 +154,6 @@ public class GameManager : MonoBehaviour
             {
                 if(board[x,y] == playerNumber && board[x + 1,y] == playerNumber && board[x + 2, y] == playerNumber && board[x + 3, y] == playerNumber)
                 {
-                    Instantiate(winUI, new Vector3(x, y, 0), Quaternion.identity);
-                    Instantiate(winUI, new Vector3(x + 1, y, 0), Quaternion.identity);
-                    Instantiate(winUI, new Vector3(x + 2, y, 0), Quaternion.identity);
-                    Instantiate(winUI, new Vector3(x + 3, y, 0), Quaternion.identity);
                     return true;
                 }
             }
@@ -158,10 +166,6 @@ public class GameManager : MonoBehaviour
             {
                 if (board[x, y] == playerNumber && board[x, y + 1] == playerNumber && board[x, y + 2] == playerNumber && board[x, y + 3] == playerNumber)
                 {
-                    Instantiate(winUI, new Vector3(x, y, 0), Quaternion.identity);
-                    Instantiate(winUI, new Vector3(x, y + 1, 0), Quaternion.identity);
-                    Instantiate(winUI, new Vector3(x, y + 2, 0), Quaternion.identity);
-                    Instantiate(winUI, new Vector3(x, y + 3, 0), Quaternion.identity);
                     return true;
                 }
             }
@@ -174,10 +178,6 @@ public class GameManager : MonoBehaviour
             {
                 if (board[x, y] == playerNumber && board[x + 1, y + 1] == playerNumber && board[x + 2, y + 2] == playerNumber && board[x + 3, y + 3] == playerNumber)
                 {
-                    Instantiate(winUI, new Vector3(x, y, 0), Quaternion.identity);
-                    Instantiate(winUI, new Vector3(x + 1, y + 1, 0), Quaternion.identity);
-                    Instantiate(winUI, new Vector3(x + 2, y + 2, 0), Quaternion.identity);
-                    Instantiate(winUI, new Vector3(x + 3, y + 3, 0), Quaternion.identity);
                     return true;
                 }
             }
@@ -189,10 +189,6 @@ public class GameManager : MonoBehaviour
             {
                 if (board[x, y + 3] == playerNumber && board[x + 1, y + 2] == playerNumber && board[x + 2, y + 1] == playerNumber && board[x + 3, y] == playerNumber)
                 {
-                    Instantiate(winUI, new Vector3(x, y + 3, 0), Quaternion.identity);
-                    Instantiate(winUI, new Vector3(x + 1, y + 2, 0), Quaternion.identity);
-                    Instantiate(winUI, new Vector3(x + 2, y + 1, 0), Quaternion.identity);
-                    Instantiate(winUI, new Vector3(x + 3, y, 0), Quaternion.identity);
                     return true;
                 }
             }

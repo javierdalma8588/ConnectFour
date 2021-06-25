@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets/Scripts/GameplayScripts/InputFields.cs" />
     <Compile Include="Assets/Scripts/GameplayScripts/GameManager.cs" />
+    <Compile Include="Assets/Scripts/UIScripts/UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
