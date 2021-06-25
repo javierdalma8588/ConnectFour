@@ -13,9 +13,10 @@ public class GameManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
-    [Header("Player UI")]
+    [Header("Board UI")]
     public GameObject player1UI;
     public GameObject player2UI;
+    public GameObject winUI;
 
     [Header("Dot Spawn Points")]
     public Transform[] spawnPoints;
@@ -84,10 +85,18 @@ public class GameManager : MonoBehaviour
             if (player1Turns)
             {
                 currentPiece = Instantiate(player1, spawnPoints[column]);
+                if(Win(1))
+                {
+                    Debug.LogError("Player1 Won");
+                }
             }
             else
             {
                 currentPiece = Instantiate(player2, spawnPoints[column]);
+                if (Win(2))
+                {
+                    Debug.LogError("Player2 Won");
+                }
             }
 
             player1Turns = !player1Turns;
@@ -116,6 +125,73 @@ public class GameManager : MonoBehaviour
             }
         }
         Debug.LogWarning("The column " + column + " is full");
+        return false;
+    }
+
+    bool Win(int playerNumber)
+    {
+        //Check Horizontal Win
+        for (int x = 0; x<lenght -3; x++)
+        {
+             for(int y = 0; y < height; y++)
+            {
+                if(board[x,y] == playerNumber && board[x + 1,y] == playerNumber && board[x + 2, y] == playerNumber && board[x + 3, y] == playerNumber)
+                {
+                    Instantiate(winUI, new Vector3(x, y, 0), Quaternion.identity);
+                    Instantiate(winUI, new Vector3(x + 1, y, 0), Quaternion.identity);
+                    Instantiate(winUI, new Vector3(x + 2, y, 0), Quaternion.identity);
+                    Instantiate(winUI, new Vector3(x + 3, y, 0), Quaternion.identity);
+                    return true;
+                }
+            }
+        }
+
+        //Check Verticla Win
+        for (int x = 0; x < lenght; x++)
+        {
+            for (int y = 0; y < height -3; y++)
+            {
+                if (board[x, y] == playerNumber && board[x, y + 1] == playerNumber && board[x, y + 2] == playerNumber && board[x, y + 3] == playerNumber)
+                {
+                    Instantiate(winUI, new Vector3(x, y, 0), Quaternion.identity);
+                    Instantiate(winUI, new Vector3(x, y + 1, 0), Quaternion.identity);
+                    Instantiate(winUI, new Vector3(x, y + 2, 0), Quaternion.identity);
+                    Instantiate(winUI, new Vector3(x, y + 3, 0), Quaternion.identity);
+                    return true;
+                }
+            }
+        }
+
+        //Check Diagonal Win
+        for (int x = 0; x < lenght -3; x++)
+        {
+            for (int y = 0; y < height - 3; y++)
+            {
+                if (board[x, y] == playerNumber && board[x + 1, y + 1] == playerNumber && board[x + 2, y + 2] == playerNumber && board[x + 3, y + 3] == playerNumber)
+                {
+                    Instantiate(winUI, new Vector3(x, y, 0), Quaternion.identity);
+                    Instantiate(winUI, new Vector3(x + 1, y + 1, 0), Quaternion.identity);
+                    Instantiate(winUI, new Vector3(x + 2, y + 2, 0), Quaternion.identity);
+                    Instantiate(winUI, new Vector3(x + 3, y + 3, 0), Quaternion.identity);
+                    return true;
+                }
+            }
+        }
+
+        for (int x = 0; x < lenght - 3; x++)
+        {
+            for (int y = 0; y < height - 3; y++)
+            {
+                if (board[x, y + 3] == playerNumber && board[x + 1, y + 2] == playerNumber && board[x + 2, y + 1] == playerNumber && board[x + 3, y] == playerNumber)
+                {
+                    Instantiate(winUI, new Vector3(x, y + 3, 0), Quaternion.identity);
+                    Instantiate(winUI, new Vector3(x + 1, y + 2, 0), Quaternion.identity);
+                    Instantiate(winUI, new Vector3(x + 2, y + 1, 0), Quaternion.identity);
+                    Instantiate(winUI, new Vector3(x + 3, y, 0), Quaternion.identity);
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }

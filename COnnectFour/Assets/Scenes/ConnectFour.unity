@@ -888,6 +888,7 @@ MonoBehaviour:
   player2: {fileID: 3016966368568239683, guid: 9965e445d4e3e4625baa7bac463ee49f, type: 3}
   player1UI: {fileID: 1820907502076748733}
   player2UI: {fileID: 5814868343370675099}
+  winUI: {fileID: 6718268292723894155, guid: 9825235879d49493391e13bee80f711b, type: 3}
   spawnPoints:
   - {fileID: 1795279873}
   - {fileID: 1594353032}
