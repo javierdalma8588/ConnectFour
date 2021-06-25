@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -82,7 +83,8 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator TakeTurn(int column)
     {
-        if(UpdateBoardState(column) && (currentPiece == null || currentPiece.GetComponent<Rigidbody>().velocity == Vector3.zero) && !gameOver)
+        int randomColumn = Random.Range(0, lenght-1);
+        if (UpdateBoardState(column) && (currentPiece == null || currentPiece.GetComponent<Rigidbody>().velocity == Vector3.zero) && !gameOver)
         {
             player1UI.SetActive(false);
             player2UI.SetActive(false);
@@ -91,7 +93,8 @@ public class GameManager : MonoBehaviour
             {
                 Debug.LogError("Player 1");
                 currentPiece = Instantiate(player1, spawnPoints[column]);
-                if(Win(1))
+                player1Turns = !player1Turns;
+                if (Win(1))
                 {
                     gameOver = true;
                     UIManager._instance.EnableWinScreen();
@@ -99,11 +102,31 @@ public class GameManager : MonoBehaviour
                     UIManager._instance.winText.color = Color.red;
                     //Debug.LogError("Player1 Won");
                 }
+                DebugBoard();
+
+                yield return new WaitForSeconds(3);
+                if (UpdateBoardState(randomColumn) && (currentPiece == null || currentPiece.GetComponent<Rigidbody>().velocity == Vector3.zero) && !gameOver && AI && !player1Turns)
+                {
+                    Debug.LogError("AI");
+                    player1Turns = !player1Turns;
+                    //SelectColumn(x);
+                    currentPiece = Instantiate(player2, spawnPoints[randomColumn]);
+                    if (Win(2))
+                    {
+                        gameOver = true;
+                        UIManager._instance.EnableWinScreen();
+                        UIManager._instance.winText.text = "Player 1 Won";
+                        UIManager._instance.winText.color = Color.red;
+                        //Debug.LogError("Player1 Won");
+                    }
+                    DebugBoard();
+                }
             }
             else if(!AI)
             {
-                Debug.LogError("Player 2");
+                //Debug.LogError("Player 2");
                 currentPiece = Instantiate(player2, spawnPoints[column]);
+                player1Turns = !player1Turns;
                 if (Win(2))
                 {
                     gameOver = true;
@@ -112,22 +135,8 @@ public class GameManager : MonoBehaviour
                     UIManager._instance.winText.color = Color.yellow;
                     //Debug.LogError("Player2 Won");
                 }
-            } else
-            {
-                Debug.LogError("AI");
-                yield return new WaitForSeconds(1);
-                currentPiece = Instantiate(player2, spawnPoints[Random.Range(0,lenght)]);
-                if (Win(2))
-                {
-                    gameOver = true;
-                    UIManager._instance.EnableWinScreen();
-                    UIManager._instance.winText.text = "Player 2 Won";
-                    UIManager._instance.winText.color = Color.yellow;
-                    //Debug.LogError("Player2 Won");
-                }
+                DebugBoard();
             }
-
-            player1Turns = !player1Turns;
         }
 
         if(Draw())
@@ -226,5 +235,20 @@ public class GameManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public void DebugBoard()
+    {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 7; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                sb.Append(board[i, j]);
+                sb.Append(' ');
+            }
+            sb.AppendLine();
+        }
+        Debug.Log(sb.ToString());
     }
 }

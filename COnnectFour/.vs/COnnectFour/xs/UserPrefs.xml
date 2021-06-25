@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{A643EE6F-DBFC-5A24-0F15-C3C91C7F2378}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/UIScripts/UIManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameplayScripts/InputFields.cs" Line="16" Column="48" />
-      <File FileName="Assets/Scripts/GameplayScripts/GameManager.cs" Line="132" Column="11" />
-      <File FileName="Assets/Scripts/UIScripts/UIManager.cs" Line="7" Column="17" />
+      <File FileName="Assets/Scripts/GameplayScripts/InputFields.cs" Line="16" Column="39" />
+      <File FileName="Assets/Scripts/GameplayScripts/GameManager.cs" Line="113" Column="81" />
+      <File FileName="Assets/Scripts/UIScripts/UIManager.cs" Line="36" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
