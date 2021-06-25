@@ -31,13 +31,9 @@ public class UIManager : MonoBehaviour
         winScreen.SetActive(true);
     }
 
-    public void RestartGame()
+    public void LoadScene(int sceneIndex)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(sceneIndex);
     }
 
-    public void QuitGame()
-    {
-        
-    }
 }

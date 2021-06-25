@@ -91,7 +91,6 @@ public class GameManager : MonoBehaviour
 
             if (player1Turns)
             {
-                Debug.LogError("Player 1");
                 currentPiece = Instantiate(player1, spawnPoints[column]);
                 player1Turns = !player1Turns;
                 if (Win(1))
@@ -104,22 +103,24 @@ public class GameManager : MonoBehaviour
                 }
                 DebugBoard();
 
-                yield return new WaitForSeconds(3);
-                if (UpdateBoardState(randomColumn) && (currentPiece == null || currentPiece.GetComponent<Rigidbody>().velocity == Vector3.zero) && !gameOver && AI && !player1Turns)
+                if(AI)
                 {
-                    Debug.LogError("AI");
-                    player1Turns = !player1Turns;
-                    //SelectColumn(x);
-                    currentPiece = Instantiate(player2, spawnPoints[randomColumn]);
-                    if (Win(2))
+                    yield return new WaitForSeconds(4);
+                    if (UpdateBoardState(randomColumn) && currentPiece.GetComponent<Rigidbody>().velocity == Vector3.zero && !gameOver && !player1Turns)
                     {
-                        gameOver = true;
-                        UIManager._instance.EnableWinScreen();
-                        UIManager._instance.winText.text = "Player 1 Won";
-                        UIManager._instance.winText.color = Color.red;
-                        //Debug.LogError("Player1 Won");
+                        player1Turns = !player1Turns;
+                        Debug.LogError(randomColumn);
+                        currentPiece = Instantiate(player2, spawnPoints[randomColumn]);
+                        if (Win(2))
+                        {
+                            gameOver = true;
+                            UIManager._instance.EnableWinScreen();
+                            UIManager._instance.winText.text = "Player 2 Won";
+                            UIManager._instance.winText.color = Color.yellow;
+                            //Debug.LogError("Player1 Won");
+                        }
+                        DebugBoard();
                     }
-                    DebugBoard();
                 }
             }
             else if(!AI)
